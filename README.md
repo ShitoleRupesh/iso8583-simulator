@@ -1,39 +1,46 @@
-# iso8583-simulator
-POS Simulator → Switch (jPOS) → Issuer Simulator → Response
+# ISO 8583 Payment Simulator - jPOS
 
-# ISO8583 Simulator (jPOS-based)
-
-A **jPOS-based ISO 8583 simulator** to test and simulate card payment transactions, including debit, credit, and prepaid cards. This project is designed for learning, testing, and switch simulation in banking/payment domains.
+**Author:** Rupesh Shitole  
+**Domain:** Payments | ISO 8583 | jPOS | Backend
 
 ---
 
-## Features
+## 🔹 Overview
+This project is a **full ISO 8583 payment simulator** built with jPOS.  
+It includes:
 
-- Simulate **ISO 8583 messages** for financial transactions  
-- Supports **authorization, reversal, and settlement flows**  
-- Handles **Track 2 data, DE fields, and bitmaps**  
-- Lightweight **Java-based** simulator using jPOS  
-- Useful for **developers, testers, and banking professionals**  
+- POS (Point of Sale) client simulation  
+- Issuer simulator  
+- ISO 8583 0100 / 0110 messages (authorization flow)  
+- Configurable ISO packager (`iso87ascii.xml`)  
 
 ---
 
-## ISO 8583 Transaction Flow
+## 🔹 Features
+- Generate and parse ISO 8583 messages  
+- Handle multiple transaction types: **Authorization, Reversal**  
+- Logs messages for audit and analysis  
+- jPOS-based backend simulator  
+- Ready for integration with payment switch  
 
-```mermaid
-flowchart LR
-    A[Card Entry / Swipe / Insert] --> B[POS / ATM Terminal]
-    B --> C[Acquirer / Payment Gateway]
-    C --> D[ISO 8583 Message Creation]
-    D --> E[Issuer Bank / Switch Simulator]
-    E --> F[Authorization / Response]
-    F --> B
-    F --> G[Receipt Printed / Transaction Complete]
+---
+
+## 🔹 Project Structure
+
+jpos-demo/
+├── src/
+│ ├── main/
+│ │ ├── java/
+│ │ │ ├── POSClient.java
+│ │ │ └── SimpleIssuerSimulator.java
+│ │ └── resources/
+│ │ └── cfg/iso87ascii.xml
+├── .gitignore
+└── pom.xml
 
 
-Flow description:
+---
 
-Card is inserted/swiped at terminal
-Terminal sends transaction request to acquirer/payment gateway
-Request is converted into ISO 8583 message (DE fields, bitmaps)
-Issuer or simulator processes the message and returns response
-Terminal receives response and completes transaction
+## 🔹 ISO 8583 Flow Diagram
+```text
+Card → POSClient → jPOS Switch → Issuer Simulator → Response → POS
